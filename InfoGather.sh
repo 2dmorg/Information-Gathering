@@ -7,42 +7,55 @@ cd /Users/Shared/
 datecode=$(date +%F-%T)
 
 # Filename
-fname=$(
+fname=$($hname-Information.txt)
 
 # Prepare File
-echo "Prepared: $datecode" > 
+echo "Prepared: $datecode" > /Users/Shared/$fname
+
+# Computer Serial Number
+sn=$(system_profiler | grep "Serial Number (system)" | awk '{print $4}')
+
+echo "Serial Number" >> /Users/Shared/$fname
+
+echo "Serial Number Is: $sn" >> /Users/Shared/$fname
+echo "" >> /Users/Shared/$fname
 
 # Computer Host Name
+hname=$(hostname -s)
 
+echo "Host Name" >> /Users/Shared/$fname
+
+echo "Host Name is: $hname" >> /Users/Shared/$fname
+echo "" >> /Users/Shared/$fname
 
 # Current User
 $uname=$(whoami)
 
-echo "Login Information" >>
+echo "Login Information" >> /Users/Shared/$fname
 
-echo "Current logged in user is: $uname" >>
-echo "" >>
+echo "Current logged in user is: $uname" >> /Users/Shared/$fname
+echo "" >> /Users/Shared/$fname
 
-echo "Last History 10 Lines" >>
+echo "Last History 10 Lines" >> /Users/Shared/$fname
 
 lhist=$(last -n 10)
 
-echo $lhist >> 
-echo "" >>
+echo $lhist >>  /Users/Shared/$fname
+echo "" >> /Users/Shared/$fname
 
 
 # Last Shutdown Cause
 scause=$(ioreg -c AppleSMC | grep Shutdown | awk '{print $6}' | tr -d '"')
 assess=$(if [ $scasue -le 0 ]; then echo "POSSIBLE ISSUE DETECTED"; else echo "NO ISSUES"; fi;)
 
-echo "Shutdown Cause" >> 
+echo "Shutdown Cause" >>  /Users/Shared/$fname
 
-echo "Last shutdown casue was: $scause" >> 
-echo "Shutdown cause assessment is: $assess" >>
-echo "" >>
+echo "Last shutdown casue was: $scause" >>  /Users/Shared/$fname
+echo "Shutdown cause assessment is: $assess" >> /Users/Shared/$fname
+echo "" >> /Users/Shared/$fname
 
 
-system_profiler | grep "Serial Number (system)" | awk '{print $4}'
+
 
 
 
