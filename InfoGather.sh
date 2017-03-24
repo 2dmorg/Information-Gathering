@@ -60,10 +60,16 @@ echo "Last shutdown casue was: $scause" >>  /Users/Shared/$fname
 echo "Shutdown cause assessment is: $assess" >> /Users/Shared/$fname
 echo "" >> /Users/Shared/$fname
 
+echo "USB List" >> /Users/Shared/$fname
+system_profiler SPUSBDataType >> /Users/Shared/$fname
+echo "" >> /Users/Shared/$fname
 
+echo "Thunderbolt List" >> /Users/Shared/$fname
+system_profiler SPThunderboltDataType >> /Users/Shared/$fname
+echo "" >> /Users/Shared/$fname
 
-
-
-
+echo "FireWire List" >> /Users/Shared/$fname
+system_profiler SPFireWireDataType >> /Users/Shared/$fname
+echo "" >> /Users/Shared/$fname
 
 exit
