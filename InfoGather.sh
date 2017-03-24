@@ -54,10 +54,25 @@ echo "" >> /Users/Shared/$fname
 scause=$(ioreg -c AppleSMC | grep Shutdown | awk '{print $6}' | tr -d '"')
 assess=$(if [ $scasue -le 0 ]; then echo "POSSIBLE ISSUE DETECTED"; else echo "NO ISSUES"; fi;)
 
-echo "Shutdown Cause" >>  /Users/Shared/$fname
+echo "Shutdown Cause" >> /Users/Shared/$fname
 
 echo "Last shutdown casue was: $scause" >>  /Users/Shared/$fname
 echo "Shutdown cause assessment is: $assess" >> /Users/Shared/$fname
+echo "" >> /Users/Shared/$fname
+
+
+echo "Time Machine Status" >> /Users/Shared/$fname
+tmstat=$(tmutil latestbackup)
+
+if [ $tmstat == 'Unable to locate machine directory for host.' ]; then echo "NOT BACKING UP" >> /Users/Shared/$fname; else echo "Last Backup: $tmstat" >> /Users/Shared/$fname; fi;
+echo "" >> /Users/Shared/$fname
+
+echo "Third Party LaunchAgents" >> /Users/Shared/$fname
+launchctl list | grep -v com.apple | awk '{print $3}' | grep -v Label >> /Users/Shared/$fname
+echo "" >> /Users/Shared/$fname
+
+echo "Third Party Kext Files" >> /Users/Shared/$fname
+kextstat -l | grep -v com.apple | awk '{print $6 " " $7}' >> /Users/Shared/$fname
 echo "" >> /Users/Shared/$fname
 
 echo "USB List" >> /Users/Shared/$fname
