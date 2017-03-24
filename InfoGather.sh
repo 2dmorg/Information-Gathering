@@ -28,6 +28,12 @@ echo "Host Name" >> /Users/Shared/$fname
 echo "Host Name is: $hname" >> /Users/Shared/$fname
 echo "" >> /Users/Shared/$fname
 
+echo "Network Information" >> /Users/Shared/$fname
+currentip=$(ifconfig | grep inet | grep -v inet6 | grep -v 127.0.0.1 | awk '{print $2}')
+
+echo "Current IP Address/es Are: $currentip" >> /Users/Shared/$fname
+echo "" >> /Users/Shared/$fname
+
 # Current User
 $uname=$(whoami)
 
