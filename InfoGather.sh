@@ -7,7 +7,7 @@ cd /Users/Shared/
 datecode=$(date +%F-%T)
 
 # Filename
-fname=$($hname-Information.txt)
+fname=$hname-Information.txt
 
 # Prepare File
 echo "Prepared: $datecode" > /Users/Shared/$fname
